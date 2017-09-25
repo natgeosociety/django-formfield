@@ -14,3 +14,4 @@ dist/
 example/static
 .tox/
 .cache/
+build/
