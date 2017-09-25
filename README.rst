@@ -5,7 +5,7 @@
 .. _BUILD: http://travis-ci.org/#!/jsoa/django-formfield
 
 
-:Version: 0.3
+:Version: 0.5
 :Docs: https://django-formfield.readthedocs.org/en/latest/
 :Download: http://pypi.python.org/pypi/django-formfield/
 :Source: https://github.com/jsoa/django-formfield
@@ -13,6 +13,16 @@
 ==========
 Change Log
 ==========
+
+* **0.5**
+    * Django 1.10, 1.11 compatibility
+    * **Backwards Incompatible change:** Due to changes in Django in 1.10, if you assign a JSON string to a field, you must call ``full_clean()`` to convert it to a ``dict``.
+    * Added ``tox`` supportset
+* **0.4**
+    * Django 1.9 compatibility
+    * Cleaner error messages
+    * Doc updates
+    * Better sub form fields
 
 * **0.3**
     * Django 1.6/1.7/1.8 compatibility
