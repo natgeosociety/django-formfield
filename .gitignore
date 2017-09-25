@@ -1,4 +1,5 @@
 *.pyc
+*.xml
 dev.db
 local_settings.py
 media/ugc
@@ -11,3 +12,5 @@ media/css/*.r*.css
 *.egg-info
 dist/
 example/static
+.tox/
+.cache/
