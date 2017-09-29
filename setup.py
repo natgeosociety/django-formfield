@@ -1,14 +1,28 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from os import path
+import os
+import sys
 from setuptools import setup, find_packages
 import formfield
 
 
+version = __import__('formfield').get_version()
+
+if sys.argv[-1] == 'publish':
+    os.system('python setup.py bdist_wheel upload -r natgeo')
+    print("You probably want to also tag the version now:")
+    print("  python setup.py tag")
+    sys.exit()
+elif sys.argv[-1] == 'tag':
+    cmd = "git tag -a %s -m 'version %s';git push --tags" % (version, version)
+    os.system(cmd)
+    sys.exit()
+
+
 def read_file(filename):
     """Read a file into a string"""
-    p = path.abspath(path.dirname(__file__))
-    filepath = path.join(p, filename)
+    p = os.path.abspath(os.path.dirname(__file__))
+    filepath = os.path.join(p, filename)
     try:
         return open(filepath).read()
     except IOError:
@@ -18,7 +32,7 @@ def read_file(filename):
 def get_readme():
     """Return the README file contents. Supports text,rst, and markdown"""
     for name in ('README', 'README.rst', 'README.md'):
-        if path.exists(name):
+        if os.path.exists(name):
             return read_file(name)
     return ''
 
