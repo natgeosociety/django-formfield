@@ -15,3 +15,5 @@ example/static
 .tox/
 .cache/
 build/
+.coverage
+coverage.xml
