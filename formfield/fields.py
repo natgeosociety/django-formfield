@@ -59,7 +59,7 @@ class JSONField(models.TextField):
     def from_db_value(self, value, expression, connection, context):
         if value is None:
             return None
-        return json.loads(value, **self.decoder_kwargs)
+        return json.loads(value, **self.load_kwargs)
 
     def get_db_prep_value(self, value, *args, **kwargs):
         if isinstance(value, six.string_types):
@@ -100,6 +100,10 @@ class FormField(forms.MultiValueField):
                 form_class = module_loading.import_by_path(form)
             else:
                 form_class = module_loading.import_string(form)
+        elif form is None:
+            form_class = forms.Form
+        else:
+            raise ValueError("FormField got an unusual value for 'form': {0}".format(form))
         self.form = form_class()
 
         # Set the widget and initial data
