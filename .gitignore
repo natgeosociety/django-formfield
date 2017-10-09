@@ -17,3 +17,4 @@ example/static
 build/
 .coverage
 coverage.xml
+junit*.xml
