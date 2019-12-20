@@ -2,7 +2,7 @@
 """
 django-formfield
 """
-from __future__ import unicode_literals
+
 
 __version_info__ = {
     'major': 0,
