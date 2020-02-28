@@ -25,7 +25,7 @@ class FormFieldWidget(forms.MultiWidget):
         """
         if name in data:
             payload = data.get(name)
-            if isinstance(payload, (dict,)):
+            if isinstance(payload, dict):
                 # Make sure we get the data in the correct roder
                 return [payload.get(f.name) for f in self.fields]
             return payload
@@ -56,12 +56,12 @@ class FormFieldWidget(forms.MultiWidget):
         """
         This output will yeild all widgets grouped in a un-ordered list
         """
-        ret = [u'<ul class="formfield">']
+        ret = ['<ul class="formfield">']
         for i, field in enumerate(self.fields):
             label = self.format_label(field, i)
             help_text = self.format_help_text(field, i)
-            ret.append(u'<li>%s %s %s</li>' % (
+            ret.append('<li>%s %s %s</li>' % (
                 label, rendered_widgets[i], field.help_text and help_text))
 
-        ret.append(u'</ul>')
+        ret.append('</ul>')
         return ''.join(ret)
